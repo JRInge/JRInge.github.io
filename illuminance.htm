@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Illuminance Data Logger</title>
+    <script>
+      function setup() {
+        if (window.AmbientLightSensor) {
+          document.getElementById('sensorWarning').style.display = "none";
+          alert("Querying permissions...");
+          navigator.permissions.query({ name: 'ambient-light-sensor' })
+            .then(result => {
+              alert("Permissions: " + result.state);
+              if (result.state === 'denied') {
+                alert('Permission to use accelerometer sensor is denied.');
+                return;
+              }
+              const sensor = new AmbientLightSensor();
+              sensor.addEventListener('activate', () => {
+                document.getElementById('luxReading').style.display = "block";
+                console.log('Ready to report readings');
+              });
+              sensor.addEventListener('error', e => {
+                console.error(e.error);
+                alert(e.error.message);
+                document.getElementById('sensorError').style.display = "block";
+              });
+              sensor.addEventListener('reading', () => {
+                document.getElementById('lux').innerText = sensor.illuminance;
+              });
+              sensor.start();
+          });
+        } else {
+        }
+      }
+    </script>
+  </head>
+  <body onload="setup();">
+    <h1>Tasmota Illuminance Calibration</h1>
+    <div id="sensorWarning">This page requires the Generic Sensor API to be supported and enabled in your browser. To enable in Google Chrome, go to <a href="chrome://flags">chrome://flags</a> and search for 'Sensor'</div>
+     <div id="sensorError" style="display: none;">Illuminance API supported by browser but error reading sensor.</div>
+     <div id="luxReading" style="display: none;">Current reading: <span id="lux"></span> lux.</div>
+  </body>
+</html>
