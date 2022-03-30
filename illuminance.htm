@@ -54,7 +54,8 @@
               document.getElementById('tasmotaData').innerText = data.StatusSNS.ANALOG.A0;
               document.getElementById('readings').innerHTML += data.StatusSNS.ANALOG.A0 + ', ' + lux + '<br />';
             }
-          });
+          })
+          .catch(e => alert(e.message));
       }
     </script>
   </head>
