@@ -63,12 +63,10 @@
     <div id="sensorWarning">This page requires the Generic Sensor API to be supported and enabled in your browser. To enable in Google Chrome, go to <a href="chrome://flags">chrome://flags</a> and search for 'Sensor'</div>
      <div id="sensorError" style="display: none;">Illuminance API supported by browser but error reading sensor.</div>
      <div id="luxReading" style="display: none;">
-       <form action="#">
-         <input id='urlfield' type="text" value="http://DEVICE/cm?user=USERNAME&password=PASSWORD&cmnd=status%2010" style="width: 100%" />
-         <p>Current device reading: <span id="lux">N/A</span> lux.<br />
-         Latest Tasmota analog reading: <span id="tasmotaData">N/A</span>.</p>
-         <button id="collect" class="off">Start data collection</button>
-       </button>
+       <input id='urlfield' type="text" value="http://DEVICE/cm?user=USERNAME&password=PASSWORD&cmnd=status%2010" style="width: 100%" />
+       <p>Current device reading: <span id="lux">N/A</span> lux.<br />
+       Latest Tasmota analog reading: <span id="tasmotaData">N/A</span>.</p>
+       <button id="collect" class="off">Start data collection</button>
        <h2>Readings</h2>
        <div id="readings">Analogue, Lux<br /></div>
      </div>
