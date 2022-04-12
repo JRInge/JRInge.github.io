@@ -52,7 +52,7 @@
           .then(data => {
             if ('StatusSNS' in data && 'ANALOG' in data.StatusSNS && 'A0' in data.StatusSNS.ANALOG) {
               document.getElementById('tasmotaData').innerText = data.StatusSNS.ANALOG.A0;
-              document.getElementById('readings').innerHTML += new Date().toLocalTimeString() + ', ' + data.StatusSNS.ANALOG.A0 + ', ' + lux + '<br />';
+              document.getElementById('readings').innerHTML += new Date().toLocaleTimeString() + ', ' + data.StatusSNS.ANALOG.A0 + ', ' + lux + '<br />';
             }
           })
           .catch(e => alert(e.message));
